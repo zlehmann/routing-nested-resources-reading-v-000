@@ -1,16 +1,18 @@
 ## Objectives
 
-1. Objective 1
-2. Objective 2
+1. Understand the value of nested routes
+2. Guess Nested Resource URL Helpers
+3. Nest Resources in the `routes.rb` file
 
-## Instructions
+## Outline
 
-Make the tests pass.
+Back to the blog example. Author has any posts
 
-### Part 1: Do Some Stuff
-
-## Resources
-
-* [Stack Exchange](http://www.stackexchange.com) - [Some Question on Stack Exchange](http://www.stackexchange.com/questions/123)
-
-<a href='https://learn.co/lessons/routing-nested-resources-reading' data-visibility='hidden'>View this lesson on Learn.co</a>
+  * Sometime we want to show users a little bit about how the relationships work. Want users to realize that these posts belong to this user.
+  * Also we want our URLs to be shareable and almost "english-y". We want our URLs to be descriptive. Also allow for more discovery. 
+  * Create route manually, no nested stuff for `/authors/1/posts`. and `/authors/1/posts/2`. Just the reading resources.
+  * Modify the controller to work with the new filters
+  * So annoying, muddies up your routes
+  * Show how to do nested routes properly. use the `[:only]` stuff so that they don't go on to the `/new` and `/edit` just yet.
+  * Show the url helpers. (put them in the views)
+  * Explain to never nest more then one level deep.
