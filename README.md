@@ -16,3 +16,5 @@ Back to the blog example. Author has any posts
   * Show how to do nested routes properly. use the `[:only]` stuff so that they don't go on to the `/new` and `/edit` just yet.
   * Show the url helpers. (put them in the views)
   * Explain to never nest more then one level deep.
+
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/routing-nested-resources-reading' title='Objectives'>Objectives</a> on Learn.co and start learning to code for free.</p>
