@@ -249,7 +249,7 @@ We know the URL is `/authors/:author_id/posts`, so we can combine the
 two conventions and use `author_posts(author_id)`. Remember it's the
 singular `author` because we are getting one by `id`. 
 
-It stands to reason the, that a single post for an author would combine
+It stands to reason that a single post for an author would combine
 the conventions for single author path and single post path, leaving us
 with `author_post(author_id, post_id)`.
 
@@ -274,6 +274,8 @@ author_posts GET   /authors/:author_id/posts(.:format)     posts#index
              PUT   /posts/:id(.:format)                    posts#update
         root GET   /                                       posts#index
 ```
+
+You can also view this in your browser anytime you time in an incorrect route or if you visit `rails/info/routes.`
 
 If you add `_path` or `_url` to any of the names under "Prefix", you'll
 have the helper for that route.
@@ -305,6 +307,8 @@ Let's reload `/posts` and click on an author name. We should be taken to
 Great! Now our URLs properly reflect the relationship of our resources,
 and read almost like an English sentence: `author/1/posts` = "author
 number one's posts".
+
+Sometimes people get confused by path helpers and what they take as arguments.  For example, why does posts_path not take an argument, but post_path(@post) does?  Posts path refers to all of the posts, so we're not talking about a specific post (no specific id).  When we're looking at the post_path we're referring to a specific post, and the rails helper needs to know WHICH post so that it can generate the proper url `posts/1` as opposed to `posts/2`.
 
 ### Caveat on Nesting Resources More Than One Level Deep
 
@@ -341,13 +345,20 @@ But if we lean on our old friend Separation of Concerns, we can conclude
 that a post's comments are not the concern of an author, and therefore,
 don't belong nested two levels deep under the `:authors` resource.
 
+In addition, the reason to put the id of the resource in the URL is so that we have access to it in the controller.  If we know we have the post with the id of one, we can use our Active Record relationships to call
+
+```ruby
+  @post = Post.find(params[:id])
+  @post.author #=> This will tell us who the author of the post was! We don't #need this information in the URL
+```
+
 ## Summary
 
 Nesting resources is a powerful tool that helps you keep your routes
 neat and tidy, and are a better tool than dynamic route segments for
 representing parent/child relationships in your system.
 
-However, as a general rule, you should only ever nest resources one level deep
+However, as a general rule, you should only nest resources one level deep
 and ensure that you are considering Separation of Concerns even in your
 routing.
 
