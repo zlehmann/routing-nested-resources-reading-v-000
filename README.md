@@ -275,7 +275,7 @@ author_posts GET   /authors/:author_id/posts(.:format)     posts#index
         root GET   /                                       posts#index
 ```
 
-You can also view this in your browser anytime you time in an incorrect route or if you visit `rails/info/routes.`
+You can also view this in your browser anytime you type in an incorrect route or if you visit `rails/info/routes.`
 
 If you add `_path` or `_url` to any of the names under "Prefix", you'll
 have the helper for that route.
@@ -363,3 +363,5 @@ and ensure that you are considering Separation of Concerns even in your
 routing.
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/routing-nested-resources-reading' title='Objectives'>Objectives</a> on Learn.co and start learning to code for free.</p>
+
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/routing-nested-resources-reading'>Routing and Nested Resources</a> on Learn.co and start learning to code for free.</p>
