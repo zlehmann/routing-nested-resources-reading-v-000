@@ -44,7 +44,7 @@ We know we can build out a route with dynamic segments, so our first instinct mi
   get 'authors/:id/posts/:post_id'
 ```
 
-After adding those routes, let's load up our blog with `rails s` (don't forget to `rake db:seed`) and check it out by browsing to `/authors/1/posts`. 
+After adding those routes, let's load up our blog with `rails s` (don't forget to `rake db:seed`) and check it out by browsing to `/authors/1/posts`.
 
 Oops. Error. Gotta tell those routes explicitly which controller actions will handle them. Okay, let's make it look more like this:
 
@@ -66,7 +66,10 @@ And to handle our new filtering routes, we'll need to make some changes in our `
 
   def post
     @author = Author.find(params[:id])
-    @post = @author.posts.find(params[:post_id])
+    # Note that because ids are unique by
+    # table, we can go directly to
+    # Post.find — no need for @author.posts.find...
+    @post = Posts.find(params[:post_id])
     render template: 'posts/show'
   end
 ```
@@ -134,7 +137,7 @@ Let's update `index` and `show` for the new routes:
 
   def show
     if params[:author_id]
-      @post = Author.find(params[:author_id]).posts.find(params[:id])
+      @post = Post.find(params[:id])
     else
       @post = Post.find(params[:id])
     end
@@ -173,7 +176,7 @@ If we want to get to the `/authors` page, we know the URL helpers are `authors_p
 
 So what if we want to get to all posts nested under an author?
 
-We know the URL is `/authors/:author_id/posts`, so we can combine the two conventions and use `author_posts(author_id)`. Remember it's the singular `author` because we are getting one by `id`. 
+We know the URL is `/authors/:author_id/posts`, so we can combine the two conventions and use `author_posts(author_id)`. Remember it's the singular `author` because we are getting one by `id`.
 
 It stands to reason that a single post for an author would combine the conventions for single author path and single post path, leaving us with `author_post(author_id, post_id)`.
 
@@ -260,7 +263,5 @@ In addition, the reason to put the id of the resource in the URL is so that we h
 Nesting resources is a powerful tool that helps you keep your routes neat and tidy, and are a better tool than dynamic route segments for representing parent/child relationships in your system.
 
 However, as a general rule, you should only nest resources one level deep and ensure that you are considering Separation of Concerns even in your routing.
-
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/routing-nested-resources-reading' title='Objectives'>Objectives</a> on Learn.co and start learning to code for free.</p>
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/routing-nested-resources-reading'>Routing and Nested Resources</a> on Learn.co and start learning to code for free.</p>
