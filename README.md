@@ -69,7 +69,7 @@ And to handle our new filtering routes, we'll need to make some changes in our `
     # Note that because ids are unique by
     # table, we can go directly to
     # Post.find — no need for @author.posts.find...
-    @post = Posts.find(params[:post_id])
+    @post = Post.find(params[:post_id])
     render template: 'posts/show'
   end
 ```
@@ -265,3 +265,5 @@ Nesting resources is a powerful tool that helps you keep your routes neat and ti
 However, as a general rule, you should only nest resources one level deep and ensure that you are considering Separation of Concerns even in your routing.
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/routing-nested-resources-reading'>Routing and Nested Resources</a> on Learn.co and start learning to code for free.</p>
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/routing-nested-resources-reading'>Routing and Nested Resources</a> on Learn.co and start learning to code for free.</p>
